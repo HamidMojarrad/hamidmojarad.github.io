@@ -75,6 +75,15 @@
  ],
  "publications": [
   {
+   "title": "Layer-wise Probing of wav2vec 2.0 and Whisper for Consonant Cluster Reduction in African American English",
+   "venue": "Interspeech",
+   "year": "2026",
+   "text": "",
+   "pdf": "files/mojarad26_interspeech.pdf",
+   "link": "https://www.isca-archive.org/interspeech_2026/mojarad26_interspeech.html",
+   "featured": false
+  },
+  {
    "title": "Automatic Speech Recognition of African American English: Lexical and Contextual Effects",
    "venue": "International Speech Communication Association (ISCA; Interspeech 2025)",
    "year": "2025",
