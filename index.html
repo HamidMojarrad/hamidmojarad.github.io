@@ -55,7 +55,11 @@ address{font-style:normal;margin:12px 0}
 .map{width:100%;height:100%;min-height:300px;border:0;border-radius:16px}
 footer{max-width:960px;margin:72px auto 0;padding:24px 24px 44px;border-top:1px solid var(--line);color:var(--soft);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 footer a{color:var(--soft)}
-@media(max-width:760px){.hero-in{grid-template-columns:1fr;padding-top:36px;gap:36px}.ph{order:-1;justify-self:start;width:190px}.row,.row.f{grid-template-columns:1fr;gap:2px}.row.f{margin-left:0}.contact{grid-template-columns:1fr}.brand{display:none}.panel .btn{margin:0 10px 0 0}}
+@media(max-width:760px){.hero-in{grid-template-columns:1fr;padding-top:36px;gap:36px}.ph{order:-1;justify-self:start;width:190px}.row,.row.f{grid-template-columns:1fr;gap:2px}.row.f{margin-left:0}.contact{grid-template-columns:1fr}.panel .btn{margin:0 10px 0 0}}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;padding:0;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.burger i{display:block;width:20px;height:2px;margin:3px 0;background:currentColor;border-radius:1px}
+.burger:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+@media(max-width:760px){.burger{display:flex}.top nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:4px 24px 10px;overflow:visible;box-shadow:0 14px 30px rgba(20,40,90,.1)}.top nav.open{display:flex}.top nav a{padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}.top nav a:last-child{border-bottom:0}.top nav a.on{border-bottom-color:var(--line);font-weight:600}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
@@ -74,7 +78,6 @@ $('div',{},$('div',{class:'role'},p.role),$('h1',{},p.name),p.tagline&&$('p',{cl
 p.photo&&$('div',{class:'ph'},$('img',{src:p.photo,alt:p.name}))));
 const body=[
 sec('about','About',m(p.bio,(t,i)=>$('p',{class:i?'':'lead'},t))),
-sec('news','News',m(d.news,n=>$('div',{class:'row'},$('div',{class:'k'},n.date),$('p',{},n.text)))),
 sec('research','Research',has(d.research)&&$('div',{class:'g'},m(d.research,r=>$('div',{class:'card'},$('h3',{},r.title),$('p',{},r.text))))),
 sec('publications','Publications',m(d.publications,x=>$('div',{class:'row'+(x.featured?' f':'')},$('div',{class:'k'},x.year),$('div',{},$('h3',{},x.title),$('div',{class:'meta'},x.venue),x.text&&$('p',{},x.text),$('div',{},x.pdf&&L(x.pdf,'PDF',1,'chip'),x.link&&L(x.link,'Publisher page',1,'chip')))))),
 sec('awards','Awards',m(d.awards,a=>$('div',{class:'row'},$('div',{class:'k'},a.date),$('div',{},$('h3',{},a.title),$('div',{class:'meta'},a.org),$('p',{},a.text))))),
@@ -82,7 +85,12 @@ sec('labs','Labs',has(d.labs)&&$('div',{class:'g'},m(d.labs,l=>$('div',{class:'c
 p.cv&&sec('cv','Curriculum Vitae',$('div',{class:'panel'},$('p',{},'My full CV as a PDF.'),$('div',{},$('a',{class:'btn pri',href:p.cv,download:''},'Download'),L(p.cv,'View online',1,'btn')))),
 sec('contact','Contact',$('div',{class:'contact'},$('div',{class:'card'},c.email&&$('div',{},L('mailto:'+c.email,c.email,0,'mail')),has(c.address)&&$('address',{},...c.address.flatMap((l,i)=>i?[$('br'),l]:[l])),c.map&&$('p',{},L(c.map,'Open in Google Maps',1))),c.mapEmbed&&$('iframe',{class:'map',src:c.mapEmbed,title:'Map of my office',loading:'lazy',referrerpolicy:'no-referrer-when-downgrade',allowfullscreen:''})))
 ].filter(Boolean);
-const top=$('div',{class:'top'},$('div',{},L('#top',p.name,0,'brand'),$('nav',{},nav.map(([id,t])=>$('a',{href:'#'+id,'data-id':id},t.replace('Curriculum Vitae','CV'))))));
+const nv=$('nav',{id:'menu'},nav.map(([id,t])=>$('a',{href:'#'+id,'data-id':id},t.replace('Curriculum Vitae','CV'))));
+const bt=$('button',{class:'burger',type:'button','aria-label':'Menu','aria-expanded':'false','aria-controls':'menu'},$('span',{},$('i'),$('i'),$('i')));
+const shut=()=>{nv.classList.remove('open');bt.setAttribute('aria-expanded','false')};
+bt.onclick=()=>bt.setAttribute('aria-expanded',nv.classList.toggle('open'));
+nv.onclick=e=>{if(e.target.tagName==='A')shut()};addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
+const top=$('div',{class:'top'},$('div',{},L('#top',p.name,0,'brand'),nv,bt));
 const foot=$('footer',{},$('span',{},'© '+new Date().getFullYear()+' '+p.name),$('span',{},(d.links||[]).flatMap((l,i)=>[i?' · ':'',L(l.url,l.label,1)])));
 document.getElementById('app').replaceChildren(top,hero,$('main',{},...body),foot);
 const as=[...top.querySelectorAll('nav a')],io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)as.forEach(a=>a.classList.toggle('on',a.dataset.id===e.target.id))}),{rootMargin:'-30% 0px -60% 0px'});
