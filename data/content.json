@@ -1,0 +1,134 @@
+{
+ "profile": {
+  "name": "Hamid Mojarad",
+  "role": "PhD student, Heinrich-Heine-Universität Düsseldorf",
+  "tagline": "I study bias in automatic speech recognition, focusing on African American English.",
+  "photo": "Hamid.jpg",
+  "cv": "CV.pdf",
+  "bio": [
+   "As a DAAD scholarship holder, I am currently pursuing my Ph.D. in English Language and Linguistics at Heinrich-Heine-Universität (HHU) Düsseldorf, under the supervision of Prof. Dr. Kevin Tang, beginning in April 2024. My research concentrates on Automatic Speech Recognition, with a particular emphasis on uncovering potential biases against the African American English community.",
+   "I hold an M.A. in Teaching English as a Foreign Language (TEFL) earned in 2014, a B.A. in English Translation obtained in 2010, and a B.Sc. in Software Engineering completed in 2004. Additionally, I served as a Research Assistant (R.A.) for two years, collaborating with Prof. Dr. Fatemeh Hemmati on E-Learning among TEFL M.A. students of Payame Noor University (PNU) in Iran. My research interests span various areas, including Automatic Speech Recognition (ASR), Intelligent Computer-Assisted Language Learning (ICALL), Technology-Enhanced Language Learning (TELL), and E-learning.",
+   "I possess extensive experience as a Java developer, with a specialized focus on the Spring framework. I have also worked with C++ and C# for console applications and web development. As for front-end development, I know how to develop apps with JavaScript frameworks especially React.js for web and React Native for mobile development. For the time being, I am training myself with Python especially for deep learning purposes to implement my PhD thesis."
+  ]
+ },
+ "links": [
+  {
+   "label": "LinkedIn",
+   "url": "https://www.linkedin.com/in/hamidmojarrad"
+  },
+  {
+   "label": "GitHub",
+   "url": "https://github.com/HamidMojarrad"
+  }
+ ],
+ "news": [
+  {
+   "date": "Aug 2025",
+   "text": "Presented our Interspeech 2025 paper in Rotterdam, the Netherlands."
+  },
+  {
+   "date": "Apr 2024",
+   "text": "Started my PhD at HHU Düsseldorf with a DAAD scholarship."
+  }
+ ],
+ "research": [
+  {
+   "title": "Automatic Speech Recognition",
+   "text": "I am currently focused on Automatic Speech Recognition (ASR) and its related subfields under the supervision of Prof. Dr. Kevin Tang, who kindly introduced me to this area. My PhD research aims to address bias in ASR systems against the African American English (AAE) community. I will specifically examine the phonological features of AAE and their interaction with morpho-syntactic features, analyzing how these factors influence the performance of ASR systems. To carry out this research, I will leverage tools such as Montreal Forced Alignment and the Aeneas library, along with Python deep learning algorithms."
+  },
+  {
+   "title": "Computer Assisted Language Learning",
+   "text": "Drawing from my Master’s research in Teaching English as a Foreign Language (TEFL), I decided to explore the intersection of computer science and language learning/teaching. To this end, I undertook two research projects focused on e-learning and its impact on English language acquisition and assessment. This experience interested me in what is known as Intelligent Computer-Assisted Language Learning (ICALL). I intended to pursue this research line for my PhD under the supervision of Prof. Dr. Detmar Meurers at the University of Tübingen, Germany. However, my enthusiasm towards Automatic Speech Recognition (ASR) ultimately led me to choose it as my primary focus."
+  }
+ ],
+ "awards": [
+  {
+   "title": "DAAD 4-year Research Scholarship",
+   "org": "German Academic Exchange Service (DAAD)",
+   "date": "April, 2024",
+   "text": "I was awarded a 4-year Research Scholarship program by the German Academic Exchange Service (DAAD) to do my PhD at Heinrich Heine University (HHU) Düsseldorf."
+  },
+  {
+   "title": "PhD-Exceptional Talent Award",
+   "org": "Payame Noor University, Iran",
+   "date": "August, 2014",
+   "text": "I was qualified for PhD admission interviews without the national entrance exam as a top student among the Payame Noor University's MA students."
+  },
+  {
+   "title": "MA-Exceptional Talent Award",
+   "org": "Payame Noor University, Iran",
+   "date": "August, 2011",
+   "text": "I was granted an honorary admission to an M.A. program at Payame Noor University of Tehran Jonoob, Iran, without the national entrance exam, as one of the top students during my bachelor's studies."
+  }
+ ],
+ "labs": [
+  {
+   "title": "SLAM Lab",
+   "url": "https://slam.phil.hhu.de/#people",
+   "text": "The Speech, Lexicon, And Modeling (SLAM) lab is dedicated to cutting-edge research at the intersection of speech production and perception (phonetics) with speaker’s knowledge of words (lexicon). It uses a wide range of methods, including corpus analysis, computational modeling, and acoustic and articulatory phonetic experiments. It is a part of the English Language and Linguistics section of the Institut für Anglistik und Amerikanistik at Heinrich Heine University Düsseldorf, Germany. It is located in building 23.21 on the HHU campus, and has a large additional laboratory space at 24.21.U1.022."
+  },
+  {
+   "title": "MELD Lab",
+   "url": "https://meld.lin.ufl.edu/people/",
+   "text": "I work as a collaborator with the Machine Learning for Endangered Language Documentation (MELD) lab at the University of Florida. It is dedicated to the advancement of natural human language technology, the documentation and description of languages from a computational perspective, and a richer and more accurate representation of all the world’s 7000+ languages in all fields related to artificial intelligence (AI)."
+  }
+ ],
+ "publications": [
+  {
+   "title": "Automatic Speech Recognition of African American English: Lexical and Contextual Effects",
+   "venue": "International Speech Communication Association (ISCA; Interspeech 2025)",
+   "year": "2025",
+   "text": "My first PhD paper, co-authored with my supervisor Prof. Dr. Kevin Tang, investigates bias in automatic speech recognition of African American English, with an error analysis focusing on lexical and contextual effects. The paper was presented at the Interspeech 2025 conference in Rotterdam, the Netherlands, in August 2025.",
+   "pdf": "mojarad25_interspeech.pdf",
+   "link": "",
+   "featured": true
+  },
+  {
+   "title": "E-learning and Distance Education: A Study of Iranian Teaching English as a Foreign Language Masters Students",
+   "venue": "Malaysian Journal of Distance Education",
+   "year": "2016",
+   "text": "I was co-author with my MA supervisor, Prof. Dr. Fatemeh Hemmati, to study the E-learning program for TEFL master's students at Payame Noor University. During two years, I served as a Research Assistant (RA) to implement the research project.",
+   "pdf": "first_paper.pdf",
+   "link": "",
+   "featured": false
+  },
+  {
+   "title": "Face to Face versus E-learning: An Investigation into the Performance of TEFL Master's Students of Payame Noor University",
+   "venue": "Quarterly Journal of Research in School and Virtual Learning",
+   "year": "2016",
+   "text": "In line with the above mentioned paper, this was the second paper of the research carried out by my MA. supervisor and me on E-learning program for TEFL MA students of Payame Noor University. However, due to the policies taken by the university, only the name of my supervisor was published in the paper.",
+   "pdf": "second_paper.pdf",
+   "link": "",
+   "featured": false
+  },
+  {
+   "title": "Comparison of Iranian students' writing in Persian and English from the perspective of adaptive transfer",
+   "venue": "Third National Conference on Persian Linguistics and Language Teaching; The perspective of language research in the 21st century. Mashhad, Iran. (Persian paper)",
+   "year": "2016",
+   "text": "A collaboration with my MA supervisor and an MA researcher, Ms. Sahar Sadat ChatrZarin.",
+   "pdf": "third_paper.pdf",
+   "link": "",
+   "featured": false
+  },
+  {
+   "title": "Computer-based Assessment Vs. Paper/Pencil-based Assessment: An Investigation into the Performance and Attitude of Iranian EFL Learners' Reading Comprehension",
+   "venue": "International Journal of Language Learning and Applied Linguistics World",
+   "year": "2014",
+   "text": "This was my first paper, extracted from my MA thesis, with the following co-authors: Prof. Dr. Fatemeh Hemmati my MA supervisor, Prof. Dr. Manuchehr Jafari Gohar my first advisor, and Dr. Amir Sadeghi my second advisor.",
+   "pdf": "forth_paper.pdf",
+   "link": "",
+   "featured": false
+  }
+ ],
+ "contact": {
+  "email": "hamid.mojarad@hhu.de",
+  "address": [
+   "Heinrich-Heine-Universität Düsseldorf",
+   "Department for English Language and Linguistics",
+   "Geb. 23.21.02.107",
+   "Universitätsstr. 1",
+   "40225 Düsseldorf"
+  ],
+  "map": "https://maps.app.goo.gl/G1CWrkUHaDRN6jAD7"
+ }
+}
