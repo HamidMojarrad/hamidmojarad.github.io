@@ -70,8 +70,7 @@ fetch('data/content.json',{cache:'no-cache'}).then(r=>r.json()).then(d=>{
 const p=d.profile||{},c=d.contact||{},m=(a,f)=>(a||[]).map(f),has=a=>(a||[]).length;
 document.title=p.name;
 const hero=$('header',{class:'hero',id:'top'},$('div',{class:'hero-in'},
-$('div',{},$('div',{class:'role'},p.role),$('h1',{},p.name),p.tagline&&$('p',{class:'tag'},p.tagline),
-$('div',{},p.cv&&$('a',{class:'btn pri',href:p.cv,download:''},'Download CV'),has(d.publications)&&L('#publications','Publications',0,'btn'),c.email&&L('mailto:'+c.email,'Contact me',0,'btn'))),
+$('div',{},$('div',{class:'role'},p.role),$('h1',{},p.name),p.tagline&&$('p',{class:'tag'},p.tagline)),
 p.photo&&$('div',{class:'ph'},$('img',{src:p.photo,alt:p.name}))));
 const body=[
 sec('about','About',m(p.bio,(t,i)=>$('p',{class:i?'':'lead'},t))),
