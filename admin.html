@@ -14,6 +14,7 @@ header h1{font-size:17px;margin:0}main{max-width:820px;margin:0 auto;padding:20p
 label{display:block;font-weight:600;font-size:13px;margin:10px 0 3px}
 input[type=text],input[type=password],textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font:inherit;background:#fff}
 textarea{min-height:84px;resize:vertical}
+textarea.code{font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;min-height:380px;white-space:pre;overflow:auto}
 button{font:inherit;font-weight:600;padding:8px 14px;border-radius:6px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
 button.alt{background:#fff;color:var(--navy)}button.del{border-color:var(--bad);color:var(--bad);background:#fff}button:disabled{opacity:.5}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #0e8a8c;outline-offset:2px}
@@ -47,15 +48,16 @@ research:{t:'Research',f:{title:['t','Title'],text:['a','Text']},k:'title'},
 publications:{t:'Publications',top:1,f:{title:['t','Title'],venue:['t','Venue'],year:['t','Year'],text:['a','Description'],pdf:['f','PDF'],link:['t','Publisher link (optional)'],featured:['c','Feature this paper']},k:'title'},
 awards:{t:'Awards',f:{title:['t','Title'],org:['t','Organization'],date:['t','Date'],text:['a','Text']},k:'title'},
 labs:{t:'Labs',f:{title:['t','Name'],url:['t','Website'],text:['a','Text']},k:'title'},
+cv:{t:'CV',x:1},
 contact:{t:'Contact',o:1,f:{email:['t','Email'],address:['n','Address (one line per row)'],map:['t','Map link'],mapEmbed:['t','Map embed URL (Google Maps → Share → Embed a map → copy the src="..." value)']}}};
-let cfg,data,sha,tab='profile',pending={},dirty=false;
+let cfg,data,sha,tab='profile',pending={},dirty=false,snap='',T={},cvSaved=false;
 const $=id=>document.getElementById(id);
 const el=(t,a={},...c)=>{const e=document.createElement(t);Object.assign(e,a);e.append(...c.filter(x=>x!=null));return e};
 function say(m,err){const b=$('msg');b.textContent=m;b.className=err?'err':'';b.style.display='block';clearTimeout(say.t);say.t=setTimeout(()=>b.style.display='none',err?7000:3000)}
 const enc=s=>btoa(unescape(encodeURIComponent(s))),dec=s=>decodeURIComponent(escape(atob(s.replace(/\n/g,''))));
 async function gh(path,opt={}){const r=await fetch('https://api.github.com/repos/'+cfg.repo+'/contents/'+path+(opt.method?'':'?ref='+cfg.branch),{...opt,headers:{Authorization:'Bearer '+cfg.token,Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error(r.status===401?'Token rejected (401).':r.status===404?'Not found (404). Check repository, branch and token access.':r.status+' '+(await r.text()).slice(0,160));return r.json()}
 $('go').onclick=async()=>{cfg={repo:$('repo').value.trim(),branch:$('branch').value.trim(),token:$('token').value.trim()};
-try{const f=await gh('data/content.json');sha=f.sha;data=JSON.parse(dec(f.content));sessionStorage.cfg=JSON.stringify(cfg);start()}catch(e){say(e.message,1)}};
+try{const f=await gh('data/content.json');sha=f.sha;data=JSON.parse(dec(f.content));snap=JSON.stringify(data);sessionStorage.cfg=JSON.stringify(cfg);start()}catch(e){say(e.message,1)}};
 function start(){$('login').hidden=true;$('app').hidden=false;$('bar').hidden=false;
 $('tabs').replaceChildren(...Object.keys(S).map(k=>el('button',{textContent:S[k].t,id:'t-'+k,onclick:()=>{tab=k;draw()}})));draw()}
 function field(o,k,[type,label]){const w=el('div');
@@ -66,7 +68,13 @@ if(type==='f'){const f=el('input',{type:'file',onchange:async e=>{const file=e.t
 const path='files/'+file.name.replace(/[^\w.\-]+/g,'_');pending[path]=b;o[k]=path;i.value=path;dirty=true;say('Will upload '+path+' when you save.')}});w.append(el('div',{className:'file'},i,f))}else w.append(i)}
 else{const sep=type==='p'?'\n\n':'\n';const a=el('textarea',{value:type==='a'?(o[k]||''):(o[k]||[]).join(sep),oninput:e=>{const v=e.target.value;o[k]=type==='a'?v:v.split(type==='p'?/\n\s*\n/:/\n/).map(s=>s.trim()).filter(Boolean);dirty=true}});if(type==='p')a.style.minHeight='200px';w.append(a)}
 return w}
+async function loadT(path){if(T[path])return T[path];let t;try{const r=await gh(path);t={sha:r.sha,text:dec(r.content)}}catch(e){t={sha:null,text:''};if(!/404/.test(e.message))say(e.message,1)}return T[path]=t}
+function drawCV(f){const c=el('div',{className:'card'});
+c.append(el('p',{textContent:'Edit your CV here. When you save, GitHub compiles it into CV.pdf and your site shows the new version about two minutes later. The first time, paste the source of your Overleaf project into both boxes.'}),el('p',{className:'hint'},el('a',{href:'https://github.com/'+cfg.repo+'/actions',target:'_blank',rel:'noopener',textContent:'See the build status on GitHub'})));f.append(c);
+for(const [path,label] of Object.entries({'cv/cv.tex':'CV source (cv.tex)','cv/mylibs.bib':'References (mylibs.bib)'})){const box=el('div',{className:'card'}),ta=el('textarea',{className:'code',spellcheck:false,disabled:true,value:'Loading…'});box.append(el('label',{textContent:label}),ta);f.append(box);
+loadT(path).then(t=>{ta.value=t.text;ta.disabled=false;ta.oninput=()=>{t.text=ta.value;t.dirty=true;dirty=true}})}}
 function draw(){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.id==='t-'+tab));const s=S[tab],f=$('form');f.replaceChildren();
+if(s.x){drawCV(f);return}
 if(s.o){const c=el('div',{className:'card'});data[tab]=data[tab]||{};for(const k in s.f)c.append(field(data[tab],k,s.f[k]));f.append(c);return}
 data[tab]=data[tab]||[];const arr=data[tab];
 f.append(el('p',{},el('button',{textContent:'+ Add '+s.t.toLowerCase().replace(/s$/,''),onclick:()=>{const n={};for(const k in s.f)n[k]=s.f[k][0]==='c'?false:'';s.top?arr.unshift(n):arr.push(n);dirty=true;draw()}})));
@@ -77,8 +85,9 @@ d.append(el('div',{className:'tools'},el('button',{className:'alt',textContent:'
 $('save').onclick=async()=>{const b=$('save');b.disabled=true;
 try{for(const path in pending){let s;try{s=(await gh(path)).sha}catch{}
 await gh(path,{method:'PUT',body:JSON.stringify({message:'Upload '+path,content:pending[path],branch:cfg.branch,...(s?{sha:s}:{})})});delete pending[path]}
-const r=await gh('data/content.json',{method:'PUT',body:JSON.stringify({message:'Update site content',content:enc(JSON.stringify(data,null,1)+'\n'),sha,branch:cfg.branch})});
-sha=r.content.sha;dirty=false;say('Saved. The live site updates in about a minute.')}catch(e){say(e.message,1)}b.disabled=false};
+for(const p in T){const t=T[p];if(t.dirty){const r=await gh(p,{method:'PUT',body:JSON.stringify({message:'Update '+p,content:enc(t.text),branch:cfg.branch,...(t.sha?{sha:t.sha}:{})})});t.sha=r.content.sha;t.dirty=false;cvSaved=true}}
+if(JSON.stringify(data)!==snap){const r=await gh('data/content.json',{method:'PUT',body:JSON.stringify({message:'Update site content',content:enc(JSON.stringify(data,null,1)+'\n'),sha,branch:cfg.branch})});sha=r.content.sha;snap=JSON.stringify(data)}
+dirty=false;say(cvSaved?'Saved. Your CV PDF is being built and appears on the site in about 2 minutes.':'Saved. The live site updates in about a minute.');cvSaved=false}catch(e){say(e.message,1)}b.disabled=false};
 $('dl').onclick=()=>{const a=el('a',{href:URL.createObjectURL(new Blob([JSON.stringify(data,null,1)],{type:'application/json'})),download:'content.json'});a.click()};
 addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});
 if(sessionStorage.cfg){cfg=JSON.parse(sessionStorage.cfg);$('repo').value=cfg.repo;$('branch').value=cfg.branch;$('token').value=cfg.token}
