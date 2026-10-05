@@ -1,0 +1,59 @@
+name: Build CV
+
+on:
+  push:
+    paths:
+      - 'cv/cv.tex'
+      - 'cv/mylibs.bib'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-cv
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that both source files exist
+        id: chk
+        run: |
+          if [ -f cv/cv.tex ] && [ -f cv/mylibs.bib ]; then echo "ready=true" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Make the photo available to LaTeX
+        if: steps.chk.outputs.ready == 'true'
+        run: |
+          cp Hamid.jpg cv/Hamid.jpg
+          cp Hamid.jpg cv/Hamid.jpeg
+
+      - name: Compile LaTeX
+        if: steps.chk.outputs.ready == 'true'
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: cv.tex
+          working_directory: cv
+
+      - name: Stop if references are missing
+        if: steps.chk.outputs.ready == 'true'
+        run: |
+          if grep -Eqi "could not be found|Citation .* undefined" cv/cv.log; then
+            echo "Some references in cv.tex are missing from mylibs.bib. CV.pdf was not replaced."
+            exit 1
+          fi
+
+      - name: Publish CV.pdf
+        if: steps.chk.outputs.ready == 'true'
+        run: |
+          cp cv/cv.pdf CV.pdf
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add CV.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Update CV.pdf"
+            git push
+          fi
