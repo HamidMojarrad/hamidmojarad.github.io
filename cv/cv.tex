@@ -1,0 +1,349 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{calc} % for \widthof
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[backend=biber,style=authoryear,labelitem]{biblatex}
+\addbibresource{mylibs.bib}
+
+% Set color
+\definecolor{darkblue}{RGB}{29,57,127}
+\colorlet{namecolor}{black}
+
+% Header styling
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+
+% Name and photo at top (unchanged)
+\newcommand{\cvheader}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.7\textwidth}
+    \vspace{0pt}
+    {\Huge\bfseries\color{namecolor} #1} \\
+    \vspace{6pt}
+    #2
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.25\textwidth}
+    \vspace{0pt}
+    \begin{flushright}
+      \includegraphics[width=1in,clip,trim=0 0 0 0]{Hamid.jpeg}
+    \end{flushright}
+  \end{minipage}
+    \vspace{2em}
+}
+
+% Inline section title with line (robust, no TikZ)
+\newcommand{\inlinesection}[1]{%
+  \vspace{1em}
+  \noindent
+  \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \Large\textbf{\color{darkblue} #1} & \color{darkblue}\rule{0.7\linewidth}{1.2pt} \\
+  \end{tabular*}
+  \par\vspace{0.7em}
+}
+
+% Item spacing
+\setlist[itemize]{topsep=0pt, leftmargin=1.5em}
+\setlist[enumerate]{topsep=0pt, leftmargin=1.5em}
+
+\begin{document}
+
+\cvheader{Hamid Mojarad}{PhD Candidate \\
+Department of English Language and Linguistics \\
+Heinrich-Heine-Universit\"at D\"usseldorf, Germany \\
+\href{mailto:hamid.mojarad@hhu.de}{hamid.mojarad@hhu.de}; \href{https://www.hamidmojarad.com}{www.hamidmojarad.com}}
+
+%==============================
+% \inlinesection{Profile}
+
+% Computational Linguist specializing in bias mitigation for speech and language technologies, focusing on underrepresented dialects, particularly African American English (AAE). My research combines sociolinguistics and machine learning to improve the fairness and reliability of ASR and NLP systems. I work with transformer-based models (e.g., wav2vec 2.0, Whisper, BERT) for morphosyntactic and phonological feature detection in AAE, and optimize forced alignment tools such as Montreal Forced Aligner and Aeneas to enhance audio-text alignment robustness for sociolinguistic research.
+
+% I primarily use Python with libraries like PyTorch and Hugging Face Transformers, along with NLP tools for data analysis and model development. I collaborate with linguists and computer scientists to develop more inclusive speech technology solutions. My earlier background in software engineering helps me apply robust development practices and interdisciplinary problem-solving in computational linguistics. \\
+
+
+%==============================
+\inlinesection{Education}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em} % Increased from 1em to 1.5em for more space
+}
+\item \textcolor{RedViolet}{\textbf{Heinrich-Heine-Universität Düsseldorf, Germany} \hfill \textit{2024 – present}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{PhD Candidate} in English Language \& Linguistics 
+          \item \textbf{Primary Supervisor:} Prof. Dr. Kevin Tang
+          \item \textbf{Secondary Supervisor:} Prof. Dr. Laura Kallmeyer
+          \item \textbf{Dissertation:} Disentangling and Mitigating Phonological and Morpho-Syntactic Biases in Automatic Speech Recognition - The Case of African American English
+      \end{itemize}
+            
+
+\item \textcolor{RedViolet}{\textbf{Payame Noor University - Tehran Jonoob, Iran}  \hfill \textit{2011 – 2013}} \vspace{0.5em}
+
+      \begin{itemize}
+          \item \textbf{Master of Arts} in Teaching English as a Foreign Language (TEFL)
+          \item \textbf{GPA:} 17.89/20
+          \item \textbf{Thesis:} Computer-based Assessment Vs. Paper/Pencil-based Assessment: An Investigation into the Performance and Attitude of Iranian EFL Learners' Reading Comprehension
+          \item \textbf{Thesis Grade:} 19.5/20 
+          \item \textbf{Supervisor:} Prof. Dr. Fatemeh Hemmati
+      \end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{Payame Noor University - Saveh, Iran}  \hfill \textit{2006 – 2010}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Bachelor of Arts} in English Language Translation
+          \item \textbf{GPA:} 17.36/20 
+      \end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{Salahaddin University - Erbil, Iraq}  \hfill \textit{2000 – 2004}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Bachelor of Science} in Software Engineering
+          \item \textbf{GPA:} 71.27/100
+          \item \textbf{Engineering Project:} Email Server Application using Core Java Programming Language
+          \item \textbf{Project grade:}  80/100 \\
+      \end{itemize}
+      
+\end{list}
+
+%==============================
+\inlinesection{Research Interests}
+\begin{itemize}
+    \item ASR Bias, Fairness, and Error Analysis in Speech Systems
+    \item Sociophonetics and Phonological Variation in African American English
+    \item Interpretability and Representation Analysis of Speech Foundation Models
+    \item Speech and Language Technology for Low-Resource and Endangered Languages
+\end{itemize}
+
+
+%==============================
+\inlinesection{Honors \& Awards}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em} % <-- space between entries
+}
+\item \textcolor{RedViolet}{\textbf{4-Year Research Scholarship, Germany} \hfill \textit{2024 – present}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Provider:} Deutscher Akademischer Austauschdienst (DAAD) 
+      \end{itemize}
+      \begin{itemize}
+          \item Awarded a 4-year DAAD Research Scholarship to pursue a PhD at Heinrich Heine University, Düsseldorf.
+      \end{itemize}
+            
+
+\item \textcolor{RedViolet}{\textbf{PhD-Exceptional Talent Award, Iran} \hfill \textit{August, 2014}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Provider:} Payame Noor University, Iran 
+      \end{itemize}
+    \begin{itemize}
+        \item Qualified for PhD admission interviews without the national entrance exam as a top M.A. student at Payame Noor University.
+    \end{itemize}
+
+    
+\item \textcolor{RedViolet}{\textbf{MA-Exceptional Talent Award, Iran} \hfill \textit{August, 2011}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Provider:} Payame Noor University, Iran 
+      \end{itemize}
+      \begin{itemize}
+          \item Granted direct admission to the M.A. program at Payame Noor University, Tehran Jonoob, Iran, without the national entrance exam, as a top bachelor’s student.
+      \end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{University Top Students, Iraq} \hfill \textit{June, 2004}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf{Provider:} Salahaddin University - Erbil, Iraq 
+      \end{itemize}
+      \begin{itemize}
+          \item Ranked among the top 3 students in Software Engineering at Salahaddin University.
+      \end{itemize}
+      
+\end{list}
+
+
+%==============================
+\inlinesection{Lab Affiliations}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em} % <-- space between entries
+}
+\item \textcolor{RedViolet}{\textbf{Speech, Lexicon, And Modeling (SLAM) Lab} \hfill \textit{2024 – present}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf {Heinrich-Heine-Universität Düsseldorf, Germany}
+      \end{itemize}
+      \begin{itemize}
+          \item Member; research on speech perception, phonetics, and computational modeling.
+      \end{itemize}
+            
+
+\item \textcolor{RedViolet}{\textbf{Machine Learning for Endangered Language Documentation Lab} \hfill \textit{2024 - present}} \vspace{0.5em}
+      \begin{itemize}
+          \item \textbf {University of Florida, USA}
+      \end{itemize}
+    \begin{itemize}
+        \item Collaborator; projects on natural language technology for low-resource and endangered languages.
+    \end{itemize}
+
+ 
+\end{list}
+
+%==============================
+\inlinesection{Publications}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em} % <-- space between entries
+}
+\item \textcolor{RedViolet}{\textbf{Proceeding Articles}}  \vspace{0.5em}
+\begin{itemize}
+
+  \item \fullcite{MojaradTang_2026_CCRProbing_Interspeech}
+  % Add more items as needed:
+  \item \fullcite{MojaradTang_2025_ASRAAE_Interspeech}
+  
+  \item \fullcite{Mojarad2016c} \\ \\ \\
+
+\end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{Journal Articles}}  \vspace{0.5em}
+\begin{itemize}
+  \item \fullcite{Mojarad2016}
+  \item \fullcite{Mojarad2016b}
+  \item \fullcite{Mojarad2014} 
+\end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{Poster Presentations}}  \vspace{0.5em}
+\begin{itemize}
+  \item \fullcite{Mojarad_Tang_Poster_dgfscl_March2024}
+  \item \fullcite{MojaradHeicadTereat2025}
+\end{itemize}
+
+\end{list}
+
+
+%==============================
+\inlinesection{Invited Talks}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em} % <-- space between entries
+}
+\item \textcolor{RedViolet}{\textbf{University of Florida, USA - Online} \hfill \textit{17-June-2025}} \vspace{0.5em}
+      \begin{itemize}
+          \item Transcription Issues and Downstream Effects; A presentation for the the Oral History Corpus staff at University of Florida
+      \end{itemize}
+\item \textcolor{RedViolet}{\textbf{Heinrich-Heine-Universität Düsseldorf, Germany} \hfill \textit{22-May-2025}} \vspace{0.5em}
+      \begin{itemize}
+          \item Bias in Automatic Speech Recognition (ASR) - The Case of African American English (AAE); A Presentation for the Ethics, Bias and Natural Language Processing Course led by Prof. Dr. Kevin Tang 
+      \end{itemize}
+% \item \textcolor{RedViolet}{\textbf{Heinrich-Heine-Universität Düsseldorf, Germany} \hfill \textit{15-May-2025}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Mitigating Bias in Automatic Speech Recognition(ASR) - The Case of African American English(AAE); Computational Linguistics Colloquium led by Prof. Dr. Laura Kallmeyer
+ 
+%       \end{itemize}
+% \item \textcolor{RedViolet}{\textbf{Heinrich-Heine-Universität Düsseldorf, Germany} \hfill \textit{18-June-2024}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Mitigating Bias in Automatic Speech Recognition(ASR) - The Case of African American English(AAE); Ang3 Linguistics Colloquium led by Prof. Dr. Ingo Plag
+%       \end{itemize}
+\end{list}
+
+
+%==============================
+% \inlinesection{Selected Projects}
+% \begin{list}{}{
+%   \setlength{\leftmargin}{0pt}
+%   \setlength{\labelwidth}{0pt}
+%   \setlength{\itemindent}{0pt}
+%   \setlength{\parsep}{0pt}
+%   \setlength{\itemsep}{1em} % <-- space between entries
+% }
+% \item \textcolor{RedViolet}{\textbf{Forced Alignment Evaluation and Refinement} \hfill \textit{2024--2025}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Conducted an in-depth comparative analysis of Montreal Forced Aligner (MFA) and Aeneas outputs, focusing on boundary mismatches. Utilized MFA results to enhance Aeneas performance for utterance-level and speaker-specific alignment in sociolinguistic corpora.
+%       \end{itemize}
+% \item \textcolor{RedViolet}{\textbf{ASR Error Analysis on AAE Phonological Features} \hfill \textit{2024-present}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Extracted and analyzed Consonant Cluster Reduction (CCR) and ING-reduction variations from AAE speech using MFA alignment. Performed lexical neighborhood error analysis and integrated language models to assess how contextual predictability influences ASR errors. \\
+%       \end{itemize}
+% \item \textcolor{RedViolet}{\textbf{Transformer Embedding Probing and Clustering} \hfill \textit{Ongoing}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Investigating layer-wise representation quality of CCR \& ING features in wav2vec 2.0 acoustic embeddings through probing tasks. Employing clustering techniques on wav2vec 2.0 embeddings to validate MFA alignment accuracy on CCR and ING lexical subsets.
+ 
+%       \end{itemize}
+% \item \textcolor{RedViolet}{\textbf{Morphosyntactic Feature Detection with BERT Fine-Tuning} \hfill \textit{Ongoing}} \vspace{0.5em}
+%       \begin{itemize}
+%           \item Fine-tuning BERT on AAE-labeled data to detect null copula constructions and other morphosyntactic phenomena. Exploring interactions between phonological and morphosyntactic features to understand compounded bias effects in ASR outputs.
+%       \end{itemize}
+% \end{list}
+
+%==============================
+\inlinesection{Technical Skills}
+\begin{list}{}{
+  \setlength{\leftmargin}{0pt}
+  \setlength{\labelwidth}{0pt}
+  \setlength{\itemindent}{0pt}
+  \setlength{\parsep}{0pt}
+  \setlength{\itemsep}{1em}
+}
+\item \textcolor{RedViolet}{\textbf{Machine Learning \& NLP}} \vspace{0.5em}
+      \begin{itemize}
+          \item ASR systems: wav2vec 2.0, Whisper, Kaldi
+          \item NLP frameworks: Hugging Face Transformers, FairSeq, NLTK
+          \item Speech alignment: Montreal Forced Aligner, Aeneas
+          \item Dialect analysis: FAVE, DARLA, ELAN
+          % \item Model evaluation: WER, PER, bias metrics
+      \end{itemize}
+      
+\item \textcolor{RedViolet}{\textbf{Programming Languages}} \vspace{0.5em}
+      \begin{itemize}
+          \item Python (PyTorch, NumPy, pandas, Hugging Face)
+          \item R (tidyverse, phonR, emuR)
+          \item Java (Spring Boot), C++ (STL), JavaScript (React)
+          \item Bash scripting, SQL
+      \end{itemize}
+
+\item \textcolor{RedViolet}{\textbf{Tools \& Platforms}} \vspace{0.5em}
+      \begin{itemize}
+          \item Phonetics: Praat, ELAN, LaBB-CAT
+          \item Development: VS Code, Eclipse, Jupyter
+          \item Version Control: GitHub, OSF
+          \item Cloud: AWS, Google Colab
+          \item Other: Overleaf, Docker, Linux
+      \end{itemize}
+\end{list}
+
+%==============================
+\inlinesection{Languages}
+\begin{itemize}
+    \item \textbf{English:} Full professional proficiency
+    \item \textbf{German:} Working proficiency (B2 Level)
+    \item \textbf{Arabic:} Limited working proficiency
+    \item \textbf{Kurdish:} Limited working proficiency
+    \item \textbf{Persian:} Mother tongue language
+\end{itemize}
+
+%==============================
+\inlinesection{Certificates}
+\begin{itemize}
+    \item \textbf{CELTA:} Certificate in Teaching English to Speakers of Other Languages; Iran Oxford Language Institute, Tehran, Iran, August, 2016
+\end{itemize}
+
+\end{document}
